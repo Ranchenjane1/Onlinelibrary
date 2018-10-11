@@ -1,0 +1,119 @@
+// 是css预编译器；
+// 目的 还是写css；
+// 变量；函数；逻辑，色值运算；
+// boot 框架；使用sass；jquery
+
+@import "_mixin.scss";
+@import "_function.scss";
+// 变量：
+$color:#ddd; 
+
+body{
+    background: $color;
+    // color: $color;
+}
+// 混合mixin; 传参
+// 先声明后调用；
+
+// .box{
+//     width: 100px;
+//     height: 100px;
+//     background:red;
+//     @include transform(30deg);
+//     font-size: 100px;
+//     // @include transition;
+// }
+// .box2{
+//     width: 200px;
+//     height: 200px;
+//     background:yellowgreen;
+//     @include transform(60deg);
+//     // @include transition(width 2s);
+// }
+// 函数；
+// rem 16px；
+// $rootSize:18px;
+html{
+    font-size: $rootSize;
+}
+// @function pxToRem($px){
+//     @return $px / $rootSize*1rem;
+// }
+// .box{
+//     width: 100px;
+//     height: 100px;
+//     background:#000;
+// }
+.box{
+    width: 100px;
+    height: 100px;
+    background:#000;
+    span{
+       color: yellowgreen; 
+    }
+    strong{
+        color: antiquewhite;
+        text-align: center;
+    }
+    &:hover{
+        @include transition;
+        @include transform(rotate(180deg));
+    }
+}
+.box2{
+   width: pxToRem(100px);
+   height: pxToRem(100px);
+   background: #00ff00;
+}
+
+// 很有趣的东西；循环；
+
+// sass 里面的数组；符合变量；
+// $list:10px 20px;
+// sass给我们提供了非常多的方法；
+// nth();
+// .box{
+//     span{
+//         font-size:nth($list,2)
+//     }
+//     }
+
+// 复杂数组；
+// 数组套数组； 二元数组
+// $list:(box1 10px) (box2 20px) (box3 30px) (box4 40px);
+// .box{
+//     span{
+//         font-size: nth(nth($list,1),2);
+//     }
+// }
+
+// @each $class,$size in $list {
+//     .#{$class}{
+//         font-size: $size;
+//     }
+// }
+
+// @at-root
+// 跳出包围
+// .box{
+//     span{
+//         font-size: 10px;
+//         @at-root strong{
+//             font-size: 20px;
+//         }
+//     }
+// }
+// .sidebar{
+//     width: 300px;
+//     @media screen and (max-width:400px)
+//     {
+//         width:500px;
+//     }
+// }
+
+// @extend继承；
+.box2{
+    @extend .box
+}
+
+

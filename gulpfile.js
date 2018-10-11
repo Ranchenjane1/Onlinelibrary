@@ -15,6 +15,8 @@ var babel = require("gulp-babel");
 
 // css插件
 var cleanCss = require("gulp-clean-css")
+// sass编译插件；
+var sass = require("gulp-sass-china");
 
 gulp.task('connect',function(){
     connect.server({
@@ -39,7 +41,8 @@ gulp.task("html",()=>{
     //connect.reload() 数据在管中队列
 })
 gulp.task("watch",()=>{
-    gulp.watch("index.html",["html"])
+    gulp.watch("index.html",["html","sass"]);
+    gulp.watch("sass/*.scss",["html","sass"]);
 })
 gulp.task("default",["watch","connect"]);//自动刷新功能
 
@@ -54,14 +57,19 @@ gulp.task("script",()=>{
 gulp.task("css",()=>{
     return gulp.src(["styles/*.css"])
     .pipe(cleanCss())
+    .pipe(gulp.dest("dist/css"));
+})
+gulp.task("sass",()=>{
+    return gulp.src(["sass/*.scss"])
+    .pipe(sass().on("error",sass.logError))
     .pipe(gulp.dest("dist/css"))
 })
 
 // 编译；es6 => es5;
 gulp.task("es6",()=>{
-    return gulp.src("script/es2015/es6.js")
-    .pipe(babel())
+    return gulp.src("es6/*.js")
+    .pipe(babel({
+        presets: ['@babel/env']
+    }))
     .pipe(gulp.dest("dist/script"));
 })
-// npm install babel-preset-env --save-dev
-// 安装@babel/core @babel/preset-env

@@ -1,0 +1,31 @@
+body {
+  background: #ddd; }
+
+html {
+  font-size: 18px; }
+
+.box, .box2 {
+  width: 100px;
+  height: 100px;
+  background: #000; }
+  .box span, .box2 span {
+    color: yellowgreen; }
+  .box strong, .box2 strong {
+    color: antiquewhite;
+    text-align: center; }
+  .box:hover, .box2:hover {
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    transform: rotate(180deg); }
+
+.box2 {
+  width: 5.55556rem;
+  height: 5.55556rem;
+  background: #00ff00; }
